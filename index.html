@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Muhammad Abdurrahman Rabbani - Portfolio</title>
+    <link rel="icon" href="./public/images/icon.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="./public/css/style.css">
+    <style>
+        /* Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', sans-serif;
+            transition: all 0.3s;
+        }
+
+        body {
+            color: #ffffff;
+            overflow-x: hidden;
+            position: relative;
+            animation: backgroundTransition 8s infinite alternate;
+        }
+
+        @keyframes backgroundTransition {
+            0% {
+                background: #0a0a0a;
+            }
+            100% {
+                background: #2d0a45;
+            }
+        }
+
+        /* Animated Background */
+        .animated-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, #0a0a0a, #2d0a45, #4a148c);
+            background-size: 400% 400%;
+            animation: gradient 15s ease infinite;
+            z-index: -1;
+        }
+
+        @keyframes gradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Animations */
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+            100% { transform: translateY(0px); }
+        }
+
+        @keyframes slideInLeft {
+            from { transform: translateX(-100px); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+
+        @keyframes slideInRight {
+            from { transform: translateX(100px); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+        }
+
+        .profile-img {
+            width: 280px;
+            height: 280px;
+            border-radius: 10px;
+            margin-bottom: 2rem;
+            box-shadow: 0 0 30px rgba(157,78,221,0.5);
+            object-fit: cover;
+            transform: scale(1);
+            cursor: pointer;
+        }
+
+        .profile-img:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 50px rgba(157,78,221,0.8);
+        }
+
+        /* Sections */
+        section {
+            padding: 5rem 10%;
+            min-height: 100vh;
+            backdrop-filter: blur(10px);
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: #9d4edd;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            text-shadow: 0 0 15px #9d4edd;
+            animation: textColor 8s infinite alternate;
+        }
+
+        @keyframes textColor {
+            0% {
+                color: #9d4edd;
+                text-shadow: 0 0 15px #9d4edd;
+            }
+            100% {
+                color: #ffffff;
+                text-shadow: 0 0 15px #ffffff;
+            }
+        }
+
+        /* About Section */
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .about-text {
+            background: rgba(255,255,255,0.1);
+            padding: 2rem;
+            border-radius: 15px;
+            border-left: 5px solid #9d4edd;
+        }
+
+        .about-text p {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+
+        .interest-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+
+        .interest-card {
+            text-align: center;
+            padding: 2rem;
+            background: rgba(157,78,221,0.1);
+            border-radius: 10px;
+            transition: transform 0.3s;
+        }
+
+        .interest-card i {
+            font-size: 2.5rem;
+            color: #9d4edd;
+            margin-bottom: 1rem;
+        }
+
+        /* Experience Timeline */
+        .timeline {
+            position: relative;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .timeline-item {
+            padding: 20px 40px;
+            position: relative;
+            background: rgba(255,255,255,0.1);
+            border-radius: 10px;
+            margin-bottom: 2rem;
+            border-left: 5px solid #9d4edd;
+        }
+
+        /* Contact Section */
+        .contact-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .contact-btn {
+            padding: 1rem 2rem;
+            background: #9d4edd;
+            color: white;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .contact-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 30px #9d4edd;
+        }
+
+        /* Scroll Animations */
+        .scroll-animate {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.8s;
+        }
+
+        .scroll-animate.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            section {
+                padding: 3rem 5%;
+            }
+            
+            .about-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .interest-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Tambahkan CSS ini di dalam tag style */
+        .edu-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid rgba(157,78,221,0.3);
+        }
+
+        .edu-details {
+            padding-left: 2rem;
+            border-left: 3px solid #9d4edd;
+            margin-left: 1.5rem;
+        }
+
+        .edu-details ul {
+            margin-top: 1rem;
+            padding-left: 1.5rem;
+        }
+
+        .edu-details li {
+            margin-bottom: 0.8rem;
+            position: relative;
+        }
+
+        .edu-details li i {
+            position: absolute;
+            left: -1.5rem;
+            top: 0.3rem;
+            color: #9d4edd;
+        }
+
+        /* Section Enhancements */
+        .section-description {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            max-width: 800px;
+            margin: 0 auto 3rem;
+            text-align: center;
+            opacity: 0.9;
+        }
+
+        /* Contact Section */
+        .contact-message {
+            text-align: center;
+            margin-bottom: 3rem;
+            font-size: 1.2rem;
+        }
+
+        /* Audio Player */
+        #bgMusic {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            opacity: 0.5;
+            width: 50px;
+            height: 50px;
+            z-index: 100;
+            transition: all 0.3s;
+        }
+        #bgMusic:hover {
+            opacity: 1;
+            transform: scale(1.1);
+        }
+    </style>
+</head>
+<body>
+    <!-- Background Music -->
+    <audio id="bgMusic" autoplay loop controls volume="0.5">
+        <source src="./public/audio/title.mp3" type="audio/mpeg">
+    </audio>
+
+    <div class="animated-bg"></div>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div>
+            <img src="./public/images/p1.gif" alt="Profile" class="profile-img">
+            <h1 style="font-size: 3rem; margin-bottom: 1rem; animation: textColor 8s infinite alternate">
+                Muhammad Abdurrahman Rabbani
+            </h1>
+            <p style="font-size: 1.5rem; color: #b39ddb">
+                <i class="fas fa-code"></i> Full Stack Developer | 
+                <i class="fas fa-brain"></i> AI Engineer | 
+                <i class="fas fa-pen-fancy"></i> Technical Architect
+            </p>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about">
+        <h2 class="section-title scroll-animate"><i class="fas fa-user-astronaut"></i> Professional Journey</h2>
+        <p class="section-description">
+            Sebagai profesional di bidang teknologi dengan pengalaman 3+ tahun, saya menggabungkan keahlian teknis 
+            dengan kreativitas untuk menciptakan solusi digital yang berdampak. Spesialisasi utama dalam pengembangan 
+            sistem cerdas dan arsitektur web modern.
+        </p>
+        <div class="about-content">
+            <div class="about-text scroll-animate">
+                <p>
+                    Saya memiliki minat besar pada teknologi dengan fokus khusus dalam pengembangan web, 
+                    pemrograman sistem cerdas, dan penulisan teknis. Dengan kombinasi keahlian teknis dan 
+                    kemampuan komunikasi yang kuat, saya berkomitmen untuk mentransformasi ide-ide inovatif 
+                    menjadi solusi digital yang fungsional dan berdampak.
+                </p>
+                <p>
+                    <i class="fas fa-star" style="color: #9d4edd"></i> Jujur & Bertanggung Jawab<br>
+                    <i class="fas fa-sync-alt" style="color: #9d4edd"></i> Adaptasi Cepat<br>
+                    <i class="fas fa-lightbulb" style="color: #9d4edd"></i> Penyelesaian Masalah Kreatif
+                </p>
+            </div>
+            <div class="interest-grid scroll-animate">
+                <div class="interest-card">
+                    <i class="fas fa-laptop-code"></i>
+                    <h3>Web Development</h3>
+                    <p>Membangun aplikasi web modern dengan teknologi terkini</p>
+                </div>
+                <div class="interest-card">
+                    <i class="fas fa-brain"></i>
+                    <h3>Kecerdasan Buatan</h3>
+                    <p>Pengembangan sistem cerdas dan machine learning</p>
+                </div>
+                <div class="interest-card">
+                    <i class="fas fa-file-alt"></i>
+                    <h3>Penulisan Teknis</h3>
+                    <p>Dokumentasi proyek dan artikel teknis</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience">
+        <h2 class="section-title scroll-animate"><i class="fas fa-briefcase"></i> Experience</h2>
+        <div class="timeline">
+            <div class="timeline-item scroll-animate">
+                <h3><i class="fas fa-rocket"></i> Freelancer - PT Panonpoe Media</h3>
+                <p style="color: #b39ddb; margin: 1rem 0">Jan 2025 - Present</p>
+                <ul>
+                    <li><i class="fas fa-caret-right"></i> Pengembangan web menggunakan Flask Framework</li>
+                    <li><i class="fas fa-caret-right"></i> Integrasi sistem AI untuk analisis data</li>
+                    <li><i class="fas fa-caret-right"></i> Pembuatan dokumentasi teknis proyek</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Education Section -->
+    <section id="education">
+        <h2 class="section-title scroll-animate"><i class="fas fa-graduation-cap"></i> Education</h2>
+        <div class="timeline">
+            <!-- University Education -->
+            <div class="timeline-item scroll-animate">
+                <div class="edu-header">
+                    <img src="./public/images/ubsi.png" alt="University Logo" style="height: 60px; margin-right: 1rem;">
+                    <div>
+                        <h3>Universitas Bina Sarana Informatika</h3>
+                        <p style="color: #b39ddb">2021 - 2024 (Expected)</p>
+                    </div>
+                </div>
+                <div class="edu-details">
+                    <p><i class="fas fa-book-open" style="color: #9d4edd"></i> Bachelor of Computer Science</p>
+                    <ul>
+                        <li><i class="fas fa-caret-right"></i> Fokus pada pengembangan sistem cerdas dan AI</li>
+                        <li><i class="fas fa-caret-right"></i> Mata kuliah utama: Pemrograman Web, Machine Learning, Basis Data</li>
+                        <li><i class="fas fa-caret-right"></i> Projek akhir: Sistem klasifikasi gambar menggunakan CNN</li>
+                        <li><i class="fas fa-caret-right"></i> Aktif dalam organisasi HIMAIF sebagai divisi riset teknologi</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- High School Education -->
+            <div class="timeline-item scroll-animate" style="margin-top: 2rem;">
+                <div class="edu-header">
+                    <img src="./public/images/sma.png" alt="High School Logo" style="height: 60px; margin-right: 1rem;">
+                    <div>
+                        <h3>SMA YAPEMRI DEPOK</h3>
+                        <p style="color: #b39ddb">2018 - 2021</p>
+                    </div>
+                </div>
+                <div class="edu-details">
+                    <p><i class="fas fa-flask" style="color: #9d4edd"></i> Jurusan MIPA (Matematika dan Ilmu Pengetahuan Alam)</p>
+                    <ul>
+                        <li><i class="fas fa-caret-right"></i> Fokus pada ilmu eksakta dan penelitian sains</li>
+                        <li><i class="fas fa-caret-right"></i> bisa Microsoft Excel, Word dan Power point</li>
+                        <li><i class="fas fa-caret-right"></i> Program Pascal</li>
+                        <li><i class="fas fa-caret-right"></i> Projek penelitian: Sistem pengaturan suhu ruangan otomatis</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+        <h2 class="section-title scroll-animate"><i class="fas fa-comments"></i> Let's Collaborate!</h2>
+        <p class="contact-message">
+            Tertarik membuat proyek bersama?<br>
+            Hubungi saya melalui platform berikut untuk diskusi lebih lanjut:<br>
+            <span style="font-size: 0.9em; opacity: 0.8">(Respons dalam 1-2 jam kerja)</span>
+        </p>
+        <div class="contact-links">
+            <a href="https://wa.me/+6281389922040" class="contact-btn scroll-animate">
+                <i class="fab fa-whatsapp"></i> Priority Support
+                <span class="badge">Recommended</span>
+            </a>
+            <a href="mailto:rabbani.office1806@gmail.com" class="contact-btn scroll-animate">
+                <i class="fas fa-envelope"></i> Email Professional
+            </a>
+            <a href="https://id.jobstreet.com/id/profile/muhammadabdurrahman-rabbani-0VYgwp5ZY5" 
+               class="contact-btn scroll-animate">
+                <i class="fas fa-briefcase"></i> JobStreet
+            </a>
+            <a href="https://www.linkedin.com/in/muhammad-abdurrahman-rabbani-78b208346" 
+               class="contact-btn scroll-animate">
+                <i class="fab fa-linkedin"></i> LinkedIn
+            </a>
+        </div>
+    </section>
+
+    <script>
+        // Scroll Animation Handler
+        const scrollElements = document.querySelectorAll('.scroll-animate');
+        
+        const elementInView = (el) => {
+            const elementTop = el.getBoundingClientRect().top;
+            return elementTop <= (window.innerHeight * 0.75);
+        };
+
+        const handleScrollAnimation = () => {
+            scrollElements.forEach(el => {
+                if(elementInView(el)) {
+                    el.classList.add('active');
+                }
+            });
+        };
+
+        window.addEventListener('scroll', () => {
+            handleScrollAnimation();
+        });
+
+        // Initial check
+        handleScrollAnimation();
+
+        // Profile image hover effect
+        const profileImg = document.querySelector('.profile-img');
+        let isHovering = false;
+        
+        profileImg.addEventListener('mouseenter', () => {
+            if(!isHovering) {
+                profileImg.style.transform = 'scale(1.05)';
+                isHovering = true;
+            }
+        });
+        
+        profileImg.addEventListener('mouseleave', () => {
+            profileImg.style.transform = 'scale(1)';
+            isHovering = false;
+        });
+
+        // Add smooth scroll behavior
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Music Control
+        const bgMusic = document.getElementById('bgMusic');
+        bgMusic.volume = 0.5;
+
+        // Auto-play handling for Chrome
+        document.addEventListener('click', function() {
+            bgMusic.play().catch(() => {
+                // Handle browser autoplay restrictions
+                console.log('User interaction required for audio playback');
+            });
+        });
+
+        // Automatic Theme Transition
+        document.addEventListener('DOMContentLoaded', () => {
+            let themeState = 0;
+            setInterval(() => {
+                themeState = themeState === 0 ? 1 : 0;
+            }, 8000);
+        });
+    </script>
+</body>
+</html>
